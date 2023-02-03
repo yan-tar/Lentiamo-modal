@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Modal Counter",
+  "description": "Counts the number of modal elements on the page.",
+  "version": "0.1",
+  "action": {
+    "default_title": "VC Modal counter",
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["browser.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      },
+      "description": "Opens popup.html"
+    }
+  }
+  }
