@@ -1,5 +1,7 @@
 const header = document.querySelector('#modal-count');
-const msg = "Find modals";
+const msg = {
+  txt: "Find modals"
+}
 const params = {
   active : true,
   currentWindow: true,
@@ -19,16 +21,29 @@ function gotTabs(tabs) {
     showModalList(value.modals);
   });
 
-  function showModalList(modalArr) {
-    const ul = document.createElement("ul");
-    modalArr.forEach(element => {
-      const li = document.createElement("li");
-      li.innerHTML = "#" + element;
-      ul.appendChild(li);
-    });
-    header.after(ul);
+}
 
-  }
+function showModalList(modalArr) {
+  const ul = document.createElement("ul");
+  modalArr.forEach(element => {
+    const li = document.createElement("li");
+    li.innerHTML = "#" + element;
+    ul.appendChild(li);
+    li.setAttribute("id",element);
+    li.addEventListener("click", askToShowModal);
+  });
+  header.after(ul);
+}
+
+function askToShowModal(event) {
+  console.log("we're asking to show modal", event.target.id);
+  msg.txt = "Show modal";
+  msg.modalId = event.target.id;
+  chrome.tabs.query(params, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, msg).then(function(value) {
+      console.log("response",value);
+    });
+  });
 
 }
 // (async () => {
