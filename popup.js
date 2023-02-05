@@ -25,6 +25,7 @@ function gotTabs(tabs) {
 
 function showModalList(modalArr) {
   const ul = document.createElement("ul");
+  ul.setAttribute("id", "modalsList");
   modalArr.forEach(element => {
     const li = document.createElement("li");
     elName = element !== "" ? "#" + element : "<span class='red'>No id</span>";
@@ -38,10 +39,15 @@ function showModalList(modalArr) {
 
 function askToShowModal(event) {
   console.log("we're asking to show modal", event.target.id);
+  document.querySelectorAll("#modalsList li").forEach((el) => {
+    el.classList.remove("chosen");
+  });
+
   msg.txt = "Show modal";
   msg.modalId = event.target.id;
   chrome.tabs.query(params, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, msg).then(function(value) {
+      event.target.classList.add("chosen");
       console.log("response",value);
     });
   });

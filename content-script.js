@@ -17,7 +17,8 @@ function gotMessage(msg, sender, resp) {
         resp(response);
     }
     else if (msg.txt === "Show modal") {
-        console.log("we should show modal", msg.modalId);
+        hideModals();
+        showModal(msg.modalId);
     }
 }
 
