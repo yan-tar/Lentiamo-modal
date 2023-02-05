@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Modal Counter",
-  "description": "Counts the number of modal elements on the page.",
+  "description": "Counts the number of modal elements on Lentiamo pages.",
   "version": "0.1",
   "action": {
     "default_title": "VC Modal counter",
@@ -10,8 +10,8 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["browser.js"]
+      "matches": ["https://lentiamo.lol/*", "https://lentiamo.cz/*", "https://lentiamo.sk/*", "https://lentiamo.ch/*", "https://lentiamo.co.uk/*", "https://lentiamo.ro/*", "https://lentiamo.bg/*", "https://lentiamo.ie/*", "https://lentiamo.it/*", "https://lentiamo.es/*", "https://lentiamo.nl/*", "https://lentiamo.se/*", "https://lentiamo.dk/*", "https://lentiamo.fr/*", "https://lentiamo.gr/*", "https://lentiamo.de/*", "https://lentiamo.at/*", "https://lentiamo.ch/*", "https://321linsen.de/*", "https://ihrelinsen.at/*"],
+      "js": ["content-script.js"]
     }
   ],
   "permissions": [
