@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener(gotMessage);
 function gotMessage(msg, sender, resp) {
     console.log(msg);
     if(msg === "Find modals") {
-        const modals = document.querySelectorAll(".modal, .vc-modal");
+        const modals = document.querySelectorAll(".modal, .vc-modal, .vc-modal-static");
         const response = {
             count: modals.length,
             modals: []
