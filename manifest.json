@@ -6,7 +6,11 @@
   "action": {
     "default_title": "VC Modal counter",
     "default_popup": "popup.html",
-    "default_icon": "icon.png"
+    "default_icon":  {
+      "16": "icon-16.png",
+      "32": "icon-32.png",
+      "64": "icon-64.png"
+    }
   },
   "content_scripts": [
     {
