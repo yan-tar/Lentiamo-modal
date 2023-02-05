@@ -27,7 +27,8 @@ function showModalList(modalArr) {
   const ul = document.createElement("ul");
   modalArr.forEach(element => {
     const li = document.createElement("li");
-    li.innerHTML = "#" + element;
+    elName = element !== "" ? "#" + element : "<span class='red'>No id</span>";
+    li.innerHTML = elName;
     ul.appendChild(li);
     li.setAttribute("id",element);
     li.addEventListener("click", askToShowModal);
