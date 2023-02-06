@@ -29,9 +29,11 @@ function showModalList(modalArr) {
   modalArr.forEach(element => {
     const li = document.createElement("li");
     elName = element !== "" ? "#" + element : "<span class='red'>No id</span>";
+    elName += "<button>hide</button>";
     li.innerHTML = elName;
     ul.appendChild(li);
     li.setAttribute("id",element);
+    li.querySelector("button").addEventListener("click", askToHideModal);
     li.addEventListener("click", askToShowModal);
   });
   header.after(ul);
@@ -52,6 +54,20 @@ function askToShowModal(event) {
     });
   });
 
+}
+
+function askToHideModal(event) {
+  console.log("hide modal", event.target.parentElement.id);
+
+  msg.txt = "Hide modal";
+  msg.modalId = event.target.parentElement.id;
+  chrome.tabs.query(params, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, msg).then(function(value) {
+      event.target.classList.remove("chosen");
+    });
+  });
+  event.stopPropagation();
+  return false;
 }
 // (async () => {
 //   const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
