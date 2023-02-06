@@ -15,7 +15,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.lentiamo.lol/*", "https://*.lentiamo.cz/*", "https://*.lentiamo.sk/*", "https://*.lentiamo.ch/*", "https://*.lentiamo.co.uk/*", "https://*.lentiamo.ro/*", "https://*.lentiamo.bg/*", "https://*.lentiamo.ie/*", "https://*.lentiamo.it/*", "https://*.lentiamo.es/*", "https://*.lentiamo.nl/*", "https://*.lentiamo.se/*", "https://*.lentiamo.dk/*", "https://*.lentiamo.fr/*", "https://*.lentiamo.gr/*", "https://*.lentiamo.de/*", "https://*.lentiamo.at/*", "https://*.lentiamo.ch/*", "https://*.321linsen.de/*", "https://*.ihrelinsen.at/*"],
-      "js": ["content-script.js"]
+      "js": ["assets/jquery300.js","assets/bootstrap337.js","content-script.js"]
     }
   ],
   "permissions": [

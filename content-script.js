@@ -24,15 +24,11 @@ function gotMessage(msg, sender, resp) {
 
 
 function hideModals() {
-    document.querySelector("body").classList.remove("modal-open");
     modals.forEach((el) => {
-        el.classList.remove("in");
-        el.style.display = "none";
+        $(el).modal("hide");
     });
   }
 
 function showModal(id) {
-    document.querySelector("body").classList.add("modal-open");
-    document.getElementById(id).classList.add("in");
-    document.getElementById(id).style.display = "block";
+    $("#"+id).modal();
 }
