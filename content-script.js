@@ -6,14 +6,7 @@ chrome.runtime.onMessage.addListener(gotMessage);
 function gotMessage(msg, sender, resp) {
     console.log(msg);
     if(msg.txt === "Find modals") {
-        const response = {
-            count: modals.length,
-            modals: []
-        };
-        // Array.prototype.forEach.call(modals, (el) => {
-        modals.forEach((el) => {
-            response.modals.push(el.id)
-        });
+        const response = makeModalsObj();
         console.log(response);
         resp(response);
     }
@@ -26,6 +19,17 @@ function gotMessage(msg, sender, resp) {
     }
 }
 
+function makeModalsObj() {
+    const response = {
+        count: modals.length,
+        modals: []
+    };
+    // Array.prototype.forEach.call(modals, (el) => {
+    modals.forEach((el) => {
+        response.modals.push({id: el.id, classList: el.classList.value})
+    });
+    return response;
+}
 
 function hideModals() {
     // Array.prototype.forEach.call(modals,(el) => {

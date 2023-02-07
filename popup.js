@@ -28,11 +28,12 @@ function showModalList(modalArr) {
   ul.setAttribute("id", "modalsList");
   modalArr.forEach(element => {
     const li = document.createElement("li");
-    elName = element !== "" ? "#" + element : "<span class='red'>No id</span>";
+    elName = element.id !== "" ? "#" + element.id : "<span class='red'>No id</span>."+element.classList;
     elName += "<button>hide</button>";
     li.innerHTML = elName;
     ul.appendChild(li);
-    li.setAttribute("id",element);
+    li.setAttribute("id",element.id);
+    li.setAttribute("class",element.classList);
     li.querySelector("button").addEventListener("click", askToHideModal);
     li.addEventListener("click", askToShowModal);
   });
@@ -40,16 +41,15 @@ function showModalList(modalArr) {
 }
 
 function askToShowModal(event) {
-  console.log("we're asking to show modal", event.target.id);
   document.querySelectorAll("#modalsList li").forEach((el) => {
-    el.classList.remove("chosen");
+    el.classList.remove("in");
   });
 
   msg.txt = "Show modal";
   msg.modalId = event.target.id;
   chrome.tabs.query(params, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, msg).then(function(value) {
-      event.target.classList.add("chosen");
+      event.target.classList.add("in");
       console.log("response",value);
     });
   });
@@ -63,7 +63,7 @@ function askToHideModal(event) {
   msg.modalId = event.target.parentElement.id;
   chrome.tabs.query(params, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, msg).then(function(value) {
-      event.target.classList.remove("chosen");
+      event.target.classList.remove("in");
     });
   });
   event.stopPropagation();
